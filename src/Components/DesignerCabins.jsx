@@ -223,9 +223,6 @@ export default function DesignerCabins() {
   )}
 </AnimatePresence>
 
-
-
-
     </div>
   );
 }

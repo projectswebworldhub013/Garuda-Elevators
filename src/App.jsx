@@ -10,6 +10,7 @@ import servicesData from "./assets/data/servicesData"
 import Gallery from "./Pages/Gallery"
 import Contact from "./Pages/Contact"
 import DesignerCabins from "./Components/DesignerCabins"
+import Doors from "./Components/Doors"
 
 const ServicePageWrapper = () => {
   const { servicePath } = useParams();
@@ -40,6 +41,7 @@ function App() {
       <Route path="/showcase" element={<Gallery/>}/>
       <Route path="/contact" element={<Contact/>}/>
       <Route path="/cabins" element={<DesignerCabins/>}/>
+      <Route path="/doors" element={<Doors/>}/>
      </Routes>
     <Footer/>
     <FloatingButtons/>
