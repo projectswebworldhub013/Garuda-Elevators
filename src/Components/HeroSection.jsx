@@ -18,7 +18,7 @@ const HeroSection = () => {
   const slides = [img1, img2, img3];
   const [current, setCurrent] = useState(0);
 
-  // ✅ Preload images
+  // Preload images
   useEffect(() => {
     slides.forEach((src) => {
       const img = new Image();
@@ -26,7 +26,7 @@ const HeroSection = () => {
     });
   }, []);
 
-  // ✅ Simple Interval for slide change
+  // Auto-slide interval
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
@@ -36,7 +36,7 @@ const HeroSection = () => {
 
   return (
     <section className="relative w-full h-[90vh] overflow-hidden text-white select-none">
-      {/* ✅ Background Image Layer */}
+      {/* Background Image Slider */}
       <div className="absolute inset-0 w-full h-full">
         {slides.map((src, index) => (
           <img
@@ -51,9 +51,10 @@ const HeroSection = () => {
         <div className="absolute inset-0 bg-black/60" />
       </div>
 
-      {/* ✅ Content Layer */}
+      {/* Content Layer */}
       <div className="relative z-10 flex flex-col md:flex-row justify-between items-center h-full px-8 md:px-16 lg:px-24">
-        {/* Left Text Section */}
+        
+        {/* Left Content */}
         <div className="max-w-2xl text-left">
           <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-6 transition-all duration-700 ease-in-out">
             Elevating Excellence Since{" "}
@@ -99,40 +100,33 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Right Quote & Icons */}
+        {/* Right Section - Quote + Icons */}
         <div className="flex flex-col items-end justify-center text-right space-y-8 mt-12 md:mt-0">
           <p className="max-w-sm leading-relaxed text-sm md:text-base italic text-[#F0F0F0]/80">
             “We don’t just lift people — we lift experiences. Reliability,
             safety, and innovation drive every rise with Garuda Elevators.”
           </p>
 
+          {/* Social Icons */}
           <div className="flex flex-col gap-4 items-center">
             {[
               { icon: <FaFacebookF size={18} />, href: "https://facebook.com" },
               { icon: <FaInstagram size={18} />, href: "https://instagram.com" },
               { icon: <FaLinkedinIn size={18} />, href: "https://linkedin.com" },
-            ].map((social, i) => (
+            ].map((item, index) => (
               <a
-                key={i}
-                href={social.href}
+                key={index}
+                href={item.href}
                 target="_blank"
-                rel="noreferrer"
-                className="p-3 rounded-full cursor-pointer transition-transform hover:scale-110 bg-white/10"
+                rel="noopener noreferrer"
+                className="p-3 rounded-full border border-white/50 hover:bg-white/20 transition-all duration-300"
               >
-                {social.icon}
+                {item.icon}
               </a>
             ))}
           </div>
         </div>
       </div>
-
-      {/* ✅ Subtle Bottom Gradient */}
-      <div
-        className="absolute bottom-0 left-0 right-0 h-[100px]"
-        style={{
-          background: `linear-gradient(to top, ${colors.darkCharcoal}, transparent)`,
-        }}
-      />
     </section>
   );
 };
