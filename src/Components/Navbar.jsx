@@ -19,13 +19,17 @@ import {
   FaTools,
   FaAngleDown,
   FaPaintRoller,
-  FaRulerCombined,
   FaRegObjectGroup,
+  FaDoorClosed,
 } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/images/garuda-logo.png"; // ✅ Replace this with your actual logo path
 
+import { MdOutlineTouchApp } from "react-icons/md";
+import { PiCloudLight } from "react-icons/pi";
+import { FaHouseFloodWater } from "react-icons/fa6";
+// import { GiSteps } from "react-icons/gi";
 // ✅ Services Data
 const servicesData = [
   { name: "Passenger Elevators", path: "/services/passenger-elevators", icon: FaBuilding },
@@ -40,11 +44,32 @@ const servicesData = [
 
 // ✅ Lift Interiors Data
 const interiorsData = [
-  { name: "Designer Cabins", path: "/cabins", icon: FaRegObjectGroup },
-  { name: "Designer False Ceiling", path: "/false-ceiling", icon: FaRulerCombined },
-  { name: "Designer Flooring", path: "/flooring", icon: FaPaintRoller },
+  {
+    name: "Premium Cabins",
+    path: "/cabins",
+    icon: FaRegObjectGroup,
+  },
+  {
+    name: "Modern Lift Doors",
+    path: "/doors",
+    icon: FaDoorClosed,
+  },
+  {
+    name: "Smart Lift Buttons",
+    path: "/buttons",
+    icon: MdOutlineTouchApp,
+  },
+  {
+    name: "Designer False Ceiling",
+    path: "/false-ceiling",
+    icon: PiCloudLight,
+  },
+  {
+    name: "Elegant Flooring",
+    path: "/floor",
+    icon: FaHouseFloodWater,
+  },
 ];
-
 // ✅ Nav Items
 const leftNavItems = [
   { name: "Home", path: "/", icon: <FaHome className="inline mr-1" /> },
