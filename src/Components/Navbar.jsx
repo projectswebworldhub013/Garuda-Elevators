@@ -80,7 +80,7 @@ const leftNavItems = [
     dropdown: "services",
   },
   {
-    name: "Lift Interiors",
+    name: "Lift Components",
     icon: <FaRegObjectGroup className="inline mr-1" />,
     dropdown: "interiors",
   },
@@ -298,10 +298,10 @@ const NavbarGaruda = () => {
               className="fixed inset-0 z-50 flex"
             >
               <motion.div
-                ref={panelRef}
-                layout
-                className="w-72 h-full bg-white shadow-lg px-6 py-5 flex flex-col"
-              >
+  className="w-72 h-full bg-white shadow-lg px-6 py-5 flex flex-col overflow-y-auto"
+  style={{ WebkitOverflowScrolling: "touch" }}
+>
+
                 <div className="flex justify-between items-center mb-4">
                   <div className="flex items-center gap-3">
                     <img src={logo} alt="Garuda Elevators Logo" className="h-16 w-16 object-contain" />
@@ -380,8 +380,9 @@ const NavbarGaruda = () => {
   {item.dropdown && openDropdown === item.dropdown && (
     <motion.ul
       key={`${item.dropdown}-mobile`}
+      layout
       initial={{ maxHeight: 0, opacity: 0 }}
-      animate={{ maxHeight: 500, opacity: 1 }}   // you can increase height for bigger dropdowns
+      animate={{ maxHeight: 1000, opacity: 1 }}    // enough for long menus
       exit={{ maxHeight: 0, opacity: 0 }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
       className="ml-6 mt-3 flex flex-col gap-3 overflow-hidden"
@@ -406,6 +407,7 @@ const NavbarGaruda = () => {
     </motion.ul>
   )}
 </AnimatePresence>
+
 
 
                     </motion.div>
