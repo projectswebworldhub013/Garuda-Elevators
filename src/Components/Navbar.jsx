@@ -104,7 +104,7 @@ const socialLinks = {
   linkedin: "https://www.linkedin.com",
 };
 
-const Navbar = () => {
+const NavbarGaruda = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const { pathname } = useLocation();
@@ -191,13 +191,13 @@ const Navbar = () => {
             <ul className="flex gap-6 text-sm font-medium uppercase relative">
               {leftNavItems.map((item) => (
                 <li
-                  key={item.path}
+                  key={item.name}
                   className="relative"
                   onMouseEnter={() => item.dropdown && setOpenDropdown(item.dropdown)}
                   onMouseLeave={() => item.dropdown && setOpenDropdown(null)}
                 >
                   <div className="flex items-center gap-1">
-                    <Link to={item.path} className={navLinkClasses(item.path)}>
+                    <Link to={item.path || "#"} className={navLinkClasses(item.path)}>
                       {item.icon}
                       {item.name}
                     </Link>
@@ -299,6 +299,7 @@ const Navbar = () => {
             >
               <motion.div
                 ref={panelRef}
+                layout
                 className="w-72 h-full bg-white shadow-lg px-6 py-5 flex flex-col"
               >
                 <div className="flex justify-between items-center mb-4">
@@ -319,67 +320,95 @@ const Navbar = () => {
                 {/* Mobile nav list larger & touch friendly */}
                 <nav className="flex flex-col gap-4 text-[#0D0D0D]">
                   {[...leftNavItems, ...rightNavItems].map((item) => (
-                    <div key={item.path}>
+                    <motion.div key={item.name} layout>
                       <div className="flex items-center justify-between">
-                        <Link
-                          to={item.path}
-                          className={`flex items-center gap-3 text-lg ${
-                            pathname === item.path ? "font-semibold text-[#800000]" : "text-[#0D0D0D]"
-                          } hover:text-[#B22222]`}
-                          onClick={toggleMenu}
-                        >
-                          <span className="text-2xl">
-                            {item.icon}
-                          </span>
-                          {item.name}
-                        </Link>
-
-                        {item.dropdown && (
-                          <motion.span
-                            animate={{ rotate: openDropdown === item.dropdown ? 180 : 0 }}
-                            transition={{ duration: 0.35 }}
+                        {item.dropdown ? (
+                          // Render a button-like element for dropdown items so clicks don't navigate
+                          <button
+                            type="button"
                             onClick={() =>
-                              setOpenDropdown(openDropdown === item.dropdown ? null : item.dropdown)
+                              setOpenDropdown((prev) => (prev === item.dropdown ? null : item.dropdown))
                             }
-                            className="cursor-pointer text-[#666666] text-2xl"
+                            className={`w-full text-left flex items-center gap-3 text-lg ${
+                              pathname === item.path ? "font-semibold text-[#800000]" : "text-[#0D0D0D]"
+                            } hover:text-[#B22222] py-2`}
                           >
-                            <FaAngleDown />
-                          </motion.span>
+                            <span className="text-2xl">{item.icon}</span>
+                            {item.name}
+                          </button>
+                        ) : (
+                          // Non-dropdown items => navigate & close menu
+                          <Link
+                            to={item.path}
+                            onClick={() => {
+                              setIsMenuOpen(false);
+                              setOpenDropdown(null);
+                            }}
+                            className={`flex items-center gap-3 text-lg ${
+                              pathname === item.path ? "font-semibold text-[#800000]" : "text-[#0D0D0D]"
+                            } hover:text-[#B22222] py-2`}
+                          >
+                            <span className="text-2xl">{item.icon}</span>
+                            {item.name}
+                          </Link>
+                        )}
+
+                        {/* Arrow icon (also toggles dropdown) */}
+                        {item.dropdown && (
+                          <motion.button
+                            type="button"
+                            aria-expanded={openDropdown === item.dropdown}
+                            onClick={() =>
+                              setOpenDropdown((prev) => (prev === item.dropdown ? null : item.dropdown))
+                            }
+                            className="ml-2 text-2xl text-[#666666] p-1"
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <motion.span
+                              animate={{ rotate: openDropdown === item.dropdown ? 180 : 0 }}
+                              transition={{ duration: 0.35 }}
+                            >
+                              <FaAngleDown />
+                            </motion.span>
+                          </motion.button>
                         )}
                       </div>
 
                       {/* Smooth height accordion for mobile dropdown (Option A) */}
-                      <AnimatePresence initial={false}>
-                        {item.dropdown && openDropdown === item.dropdown && (
-                          <motion.ul
-                            key={`${item.dropdown}-mobile`}
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} // soft easeOut
-                            className="ml-6 mt-3 flex flex-col gap-3 overflow-hidden"
-                          >
-                            {getDropdownData(item.dropdown).map((sub) => (
-                              <li key={sub.path}>
-                                <Link
-                                  to={sub.path}
-                                  className="flex items-center gap-3 text-lg py-3 px-2 rounded-md hover:bg-[#F7F7F5] hover:text-[#B22222] transition"
-                                  onClick={() => {
-                                    setIsMenuOpen(false);
-                                    setOpenDropdown(null);
-                                  }}
-                                >
-                                  <span className="text-2xl">
-                                    {React.createElement(sub.icon, { size: 24 })}
-                                  </span>
-                                  {sub.name}
-                                </Link>
-                              </li>
-                            ))}
-                          </motion.ul>
-                        )}
-                      </AnimatePresence>
-                    </div>
+                <AnimatePresence initial={false}>
+  {item.dropdown && openDropdown === item.dropdown && (
+    <motion.ul
+      key={`${item.dropdown}-mobile`}
+      initial={{ maxHeight: 0, opacity: 0 }}
+      animate={{ maxHeight: 500, opacity: 1 }}   // you can increase height for bigger dropdowns
+      exit={{ maxHeight: 0, opacity: 0 }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      className="ml-6 mt-3 flex flex-col gap-3 overflow-hidden"
+    >
+      {getDropdownData(item.dropdown).map((sub) => (
+        <li key={sub.path}>
+          <Link
+            to={sub.path}
+            className="flex items-center gap-3 text-lg py-3 px-2 rounded-md hover:bg-[#F7F7F5] hover:text-[#B22222] transition"
+            onClick={() => {
+              setIsMenuOpen(false);
+              setOpenDropdown(null);
+            }}
+          >
+            <span className="text-2xl">
+              {React.createElement(sub.icon, { size: 24 })}
+            </span>
+            {sub.name}
+          </Link>
+        </li>
+      ))}
+    </motion.ul>
+  )}
+</AnimatePresence>
+
+
+                    </motion.div>
                   ))}
                 </nav>
 
@@ -432,4 +461,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default NavbarGaruda;
