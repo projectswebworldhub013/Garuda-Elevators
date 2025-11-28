@@ -104,7 +104,7 @@ const socialLinks = {
   linkedin: "https://www.linkedin.com",
 };
 
-const NavbarGaruda = () => {
+const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const { pathname } = useLocation();
@@ -116,6 +116,7 @@ const NavbarGaruda = () => {
     const handleClickOutside = (event) => {
       if (panelRef.current && !panelRef.current.contains(event.target)) {
         setIsMenuOpen(false);
+        setOpenDropdown(null);
       }
     };
     if (isMenuOpen) document.addEventListener("mousedown", handleClickOutside);
@@ -139,7 +140,7 @@ const NavbarGaruda = () => {
 
   return (
     <>
-      {/* ✅ Top Info Bar */}
+      {/* ===================== TOP INFO BAR ===================== */}
       <div className="bg-[#1A1A1A] text-[#FFFFFF] text-xs md:text-sm py-2 px-4 md:px-12 font-sans">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="hidden md:flex justify-between w-full">
@@ -170,25 +171,21 @@ const NavbarGaruda = () => {
         </div>
       </div>
 
-      {/* ✅ Main Navbar */}
+      {/* ===================== MAIN NAVBAR ===================== */}
       <nav className="w-full px-4 md:px-12 py-2 bg-[#F7F7F5] shadow-md relative z-50">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          {/* ✅ Mobile Header */}
+          {/* ===================== MOBILE HEADER ===================== */}
           <div className="flex w-full items-center justify-between md:hidden">
-            <FaBars onClick={toggleMenu} className="cursor-pointer text-xl text-[#800000]" />
+            <FaBars
+              onClick={toggleMenu}
+              className="cursor-pointer text-2xl text-[#800000]" /* slightly larger icon for mobile */
+            />
             <Link to="/" className="ml-auto flex items-center gap-2">
-              <img
-                src={logo}
-                alt="Garuda Elevators Logo"
-                className="h-14 w-14 object-contain"
-              />
-              {/* <span className="font-extrabold text-lg text-[#800000] tracking-wide flex">
-                Garuda <span className="text-[#B22222]">Elevators</span>
-              </span> */}
+              <img src={logo} alt="Garuda Elevators Logo" className="h-16 w-16 object-contain" />
             </Link>
           </div>
 
-          {/* ✅ Desktop Menu */}
+          {/* ===================== DESKTOP MENU (UNCHANGED) ===================== */}
           <div className="hidden md:flex items-center justify-between w-full">
             {/* Left Nav */}
             <ul className="flex gap-6 text-sm font-medium uppercase relative">
@@ -245,13 +242,9 @@ const NavbarGaruda = () => {
               ))}
             </ul>
 
-            {/* ✅ Center Logo + Text */}
+            {/* Center Logo + Text */}
             <Link to="/" className="mx-6 flex items-center gap-3 select-none">
-              <img
-                src={logo}
-                alt="Garuda Elevators Logo"
-                className="h-16 w-16 object-contain"
-              />
+              <img src={logo} alt="Garuda Elevators Logo" className="h-16 w-16 object-contain" />
               <h1 className="font-bold text-2xl text-[#800000] tracking-wide">
                 Garuda <span className="text-[#B22222] ">Elevators</span>
               </h1>
@@ -294,89 +287,112 @@ const NavbarGaruda = () => {
           </div>
         </div>
 
-        {/* ✅ Mobile Menu */}
+        {/* ===================== MOBILE MENU (SMOOTH HEIGHT ANIMATION) ===================== */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
               className="fixed inset-0 z-50 flex"
             >
               <motion.div
                 ref={panelRef}
-                className="w-64 h-full bg-[#FFFFFF] shadow-lg px-6 py-4 flex flex-col"
+                className="w-72 h-full bg-white shadow-lg px-6 py-5 flex flex-col"
               >
-                <div className="flex justify-between items-center mb-3">
-                  <div className="flex items-center gap-2">
-                    <img src={logo} alt="Garuda Elevators Logo" className="h-14 w-14 object-contain" />
-                    <h2 className="text-lg font-extrabold text-[#800000] tracking-wide">
+                <div className="flex justify-between items-center mb-4">
+                  <div className="flex items-center gap-3">
+                    <img src={logo} alt="Garuda Elevators Logo" className="h-16 w-16 object-contain" />
+                    <h2 className="text-xl font-extrabold text-[#800000] tracking-wide">
                       Garuda <span className="text-[#B22222]">Elevators</span>
                     </h2>
                   </div>
-                  <FaTimes className="text-xl text-[#800000] cursor-pointer" onClick={toggleMenu} />
+                  <FaTimes
+                    className="text-3xl text-[#800000] cursor-pointer"
+                    onClick={toggleMenu}
+                  />
                 </div>
+
                 <hr className="mb-4 border-[#E6E6E6]" />
 
-                <nav className="flex flex-col gap-3 text-[#0D0D0D] text-sm">
+                {/* Mobile nav list larger & touch friendly */}
+                <nav className="flex flex-col gap-4 text-[#0D0D0D]">
                   {[...leftNavItems, ...rightNavItems].map((item) => (
                     <div key={item.path}>
                       <div className="flex items-center justify-between">
                         <Link
                           to={item.path}
-                          className={`flex items-center gap-2 ${
+                          className={`flex items-center gap-3 text-lg ${
                             pathname === item.path ? "font-semibold text-[#800000]" : "text-[#0D0D0D]"
                           } hover:text-[#B22222]`}
                           onClick={toggleMenu}
                         >
-                          {item.icon}
+                          <span className="text-2xl">
+                            {item.icon}
+                          </span>
                           {item.name}
                         </Link>
+
                         {item.dropdown && (
                           <motion.span
                             animate={{ rotate: openDropdown === item.dropdown ? 180 : 0 }}
-                            transition={{ duration: 0.2 }}
+                            transition={{ duration: 0.35 }}
                             onClick={() =>
                               setOpenDropdown(openDropdown === item.dropdown ? null : item.dropdown)
                             }
-                            className="cursor-pointer text-[#666666]"
+                            className="cursor-pointer text-[#666666] text-2xl"
                           >
-                            <FaAngleDown size={14} />
+                            <FaAngleDown />
                           </motion.span>
                         )}
                       </div>
 
-                      {/* Mobile Dropdown */}
-                      {item.dropdown && openDropdown === item.dropdown && (
-                        <ul className="ml-6 mt-2 flex flex-col gap-2">
-                          {getDropdownData(item.dropdown).map((sub) => (
-                            <li key={sub.path}>
-                              <Link
-                                to={sub.path}
-                                className="flex items-center gap-2 text-[#0D0D0D] hover:text-[#B22222]"
-                                onClick={toggleMenu}
-                              >
-                                {React.createElement(sub.icon, { size: 14 })}
-                                {sub.name}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
+                      {/* Smooth height accordion for mobile dropdown (Option A) */}
+                      <AnimatePresence initial={false}>
+                        {item.dropdown && openDropdown === item.dropdown && (
+                          <motion.ul
+                            key={`${item.dropdown}-mobile`}
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }} // soft easeOut
+                            className="ml-6 mt-3 flex flex-col gap-3 overflow-hidden"
+                          >
+                            {getDropdownData(item.dropdown).map((sub) => (
+                              <li key={sub.path}>
+                                <Link
+                                  to={sub.path}
+                                  className="flex items-center gap-3 text-lg py-3 px-2 rounded-md hover:bg-[#F7F7F5] hover:text-[#B22222] transition"
+                                  onClick={() => {
+                                    setIsMenuOpen(false);
+                                    setOpenDropdown(null);
+                                  }}
+                                >
+                                  <span className="text-2xl">
+                                    {React.createElement(sub.icon, { size: 24 })}
+                                  </span>
+                                  {sub.name}
+                                </Link>
+                              </li>
+                            ))}
+                          </motion.ul>
+                        )}
+                      </AnimatePresence>
                     </div>
                   ))}
                 </nav>
 
-                <div className="mt-auto pt-4 border-t border-[#E6E6E6] text-xs">
+                {/* Bottom contact + socials */}
+                <div className="mt-auto pt-5 border-t border-[#E6E6E6] text-sm">
                   <p className="py-1">
                     <strong>GSTIN:</strong> {COMPANY_INFO.gst}
                   </p>
-                  <p className="py-1">
-                    <FaPhoneAlt className="inline mr-1" />
-                    {COMPANY_INFO.mobile}
+                  <p className="py-1 flex items-center gap-2">
+                    <FaPhoneAlt /> {COMPANY_INFO.mobile}
                   </p>
-                  <div className="flex gap-3 mt-3 text-lg text-[#0D0D0D]">
+
+                  <div className="flex gap-4 mt-4 text-2xl text-[#0D0D0D]">
                     {Object.entries(socialLinks).map(([k, url]) => (
                       <a
                         key={k}
@@ -391,7 +407,8 @@ const NavbarGaruda = () => {
                             instagram: FaInstagram,
                             twitter: FaTwitter,
                             linkedin: FaLinkedinIn,
-                          }[k]
+                          }[k],
+                          { size: 26 }
                         )}
                       </a>
                     ))}
@@ -399,11 +416,14 @@ const NavbarGaruda = () => {
                 </div>
               </motion.div>
 
-              {/* Overlay */}
+              {/* Overlay area */}
               <div
-                className="flex-1 backdrop-blur-sm bg-[#0D0D0D]/40"
-                onClick={() => setIsMenuOpen(false)}
-              ></div>
+                className="flex-1 backdrop-blur-sm bg-black/40"
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  setOpenDropdown(null);
+                }}
+              />
             </motion.div>
           )}
         </AnimatePresence>
@@ -412,4 +432,4 @@ const NavbarGaruda = () => {
   );
 };
 
-export default NavbarGaruda;
+export default Navbar;
