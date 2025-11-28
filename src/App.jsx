@@ -11,6 +11,8 @@ import Gallery from "./Pages/Gallery"
 import Contact from "./Pages/Contact"
 import DesignerCabins from "./Components/DesignerCabins"
 import Doors from "./Components/Doors"
+import ElegantFlooring from "./Components/ElegantFlooring"
+import LiftOperatingPanels from "./Components/LiftOperatingPanels"
 
 const ServicePageWrapper = () => {
   const { servicePath } = useParams();
@@ -42,6 +44,8 @@ function App() {
       <Route path="/contact" element={<Contact/>}/>
       <Route path="/cabins" element={<DesignerCabins/>}/>
       <Route path="/doors" element={<Doors/>}/>
+      <Route path="/floor" element={<ElegantFlooring/>}/>
+      <Route path="/panels" element={<LiftOperatingPanels/>}/>
      </Routes>
     <Footer/>
     <FloatingButtons/>

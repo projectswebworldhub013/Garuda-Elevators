@@ -55,8 +55,8 @@ const interiorsData = [
     icon: FaDoorClosed,
   },
   {
-    name: "Smart Lift Buttons",
-    path: "/buttons",
+    name: "Lift Operating Panels",
+    path: "/panels",
     icon: MdOutlineTouchApp,
   },
   {
