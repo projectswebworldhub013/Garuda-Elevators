@@ -6,7 +6,7 @@ import { IoMdTrendingUp } from "react-icons/io";
 import { HiOutlineArrowNarrowRight } from "react-icons/hi";
 import { Link } from "react-router-dom";
 
-import why1 from "../assets/images/liftservice2.jpg"; // Replace with Garuda interior image
+import why1 from "../assets/images/switch.jpg"; // Replace with Garuda interior image
 import why2 from "../assets/images/g5.jpg"; // Replace with Garuda tech image
 
 const colors = {
