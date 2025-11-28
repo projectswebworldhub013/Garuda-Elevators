@@ -8,10 +8,7 @@ import img3 from "../assets/images/hero/h3.jpg";
 const colors = {
   maroonRed: "#800000",
   deepCrimson: "#A01818",
-  pureBlack: "#0D0D0D",
   pureWhite: "#FFFFFF",
-  offWhite: "#F7F7F5",
-  darkCharcoal: "#1A1A1A",
 };
 
 const HeroSection = () => {
@@ -26,7 +23,7 @@ const HeroSection = () => {
     });
   }, []);
 
-  // Auto-slide interval
+  // Auto-slide every 5 sec
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
@@ -35,52 +32,44 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="relative w-full h-[90vh] overflow-hidden text-white select-none">
-      {/* Background Image Slider */}
-      <div className="absolute inset-0 w-full h-full">
-        {slides.map((src, index) => (
-          <img
-            key={index}
-            src={src}
-            alt="Garuda Elevators"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1200ms] ease-in-out ${
-              index === current ? "opacity-100" : "opacity-0"
-            }`}
-          />
-        ))}
-        <div className="absolute inset-0 bg-black/60" />
-      </div>
+    <section
+      className="relative w-full h-[88vh] md:h-[90vh] overflow-hidden text-white flex items-center select-none"
+      style={{
+        backgroundImage: `url(${slides[current]})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        transition: "background-image 1s ease-in-out",
+      }}
+    >
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/60"></div>
 
-      {/* Content Layer */}
-      <div className="relative z-10 flex flex-col md:flex-row justify-between items-center h-full px-8 md:px-16 lg:px-24">
-        
-        {/* Left Content */}
-        <div className="max-w-2xl text-left">
-          <h1 className="text-3xl md:text-5xl font-bold leading-tight mb-6 transition-all duration-700 ease-in-out">
+      {/* CONTENT */}
+      <div className="relative z-10 w-full h-full flex flex-col md:flex-row justify-between items-center px-6 md:px-16 lg:px-24">
+
+        {/* LEFT CONTENT */}
+        <div className="max-w-2xl">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight mb-4 md:mb-6">
             Elevating Excellence Since{" "}
             <span className="text-[#FFD7D7]">2010</span>
             <br />
             with <span className="text-[#FFBBBB]">Garuda Elevators</span>
           </h1>
 
-          <p
-            className="max-w-lg mb-10 text-base md:text-lg text-[#f3f3f3]/90"
-            style={{ lineHeight: "1.6" }}
-          >
+          <p className="max-w-lg mb-6 md:mb-10 text-sm sm:text-base md:text-lg text-white/90 leading-relaxed">
             Garuda Elevators in Malleswaram West, Bangalore, has been redefining
-            vertical transportation since 2010 — providing advanced, safe, and
-            efficient elevator solutions, from capsule to hydraulic systems,
-            crafted with precision and trust.
+            vertical transportation since 2010 — providing safe and efficient elevator
+            systems from capsule to hydraulic lifts.
           </p>
 
-          <div className="flex gap-5">
+          {/* BUTTONS */}
+          <div className="flex gap-4">
             <Link to="/services">
               <button
-                className="px-7 py-3 rounded-full text-sm md:text-base font-semibold cursor-pointer transition-transform duration-300 hover:scale-105"
+                className="px-5 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-base font-semibold 
+                transition-transform duration-300 hover:scale-105 shadow-lg"
                 style={{
                   background: `linear-gradient(90deg, ${colors.maroonRed}, ${colors.deepCrimson})`,
-                  color: colors.pureWhite,
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.25)",
                 }}
               >
                 Explore Services
@@ -89,43 +78,43 @@ const HeroSection = () => {
 
             <button
               onClick={() => (window.location.href = "/about")}
-              className="px-7 py-3 rounded-full border text-sm md:text-base font-semibold cursor-pointer hover:bg-white/10 transition-all duration-300"
-              style={{
-                borderColor: colors.pureWhite,
-                color: colors.pureWhite,
-              }}
+              className="px-5 py-2 sm:px-6 sm:py-3 rounded-full border text-sm sm:text-base font-semibold 
+              hover:bg-white/10 transition-all duration-300"
+              style={{ borderColor: colors.pureWhite }}
             >
               Learn More
             </button>
           </div>
         </div>
 
-        {/* Right Section - Quote + Icons */}
-        <div className="flex flex-col items-end justify-center text-right space-y-8 mt-12 md:mt-0">
-          <p className="max-w-sm leading-relaxed text-sm md:text-base italic text-[#F0F0F0]/80">
-            “We don’t just lift people — we lift experiences. Reliability,
-            safety, and innovation drive every rise with Garuda Elevators.”
+        {/* RIGHT CONTENT */}
+        <div className="flex flex-col items-end text-right space-y-6 mt-10 md:mt-0">
+
+          <p className="max-w-xs sm:max-w-sm leading-relaxed text-xs sm:text-sm md:text-base italic text-white/80">
+            “We don’t just lift people — we lift experiences. Reliability, safety,
+            and innovation drive every rise with Garuda Elevators.”
           </p>
 
-          {/* Social Icons */}
-          <div className="flex flex-col gap-4 items-center">
+          {/* SOCIAL ICONS */}
+          <div className="flex flex-col gap-3">
             {[
-              { icon: <FaFacebookF size={18} />, href: "https://facebook.com" },
-              { icon: <FaInstagram size={18} />, href: "https://instagram.com" },
-              { icon: <FaLinkedinIn size={18} />, href: "https://linkedin.com" },
+              { icon: <FaFacebookF size={16} />, href: "https://facebook.com" },
+              { icon: <FaInstagram size={16} />, href: "https://instagram.com" },
+              { icon: <FaLinkedinIn size={16} />, href: "https://linkedin.com" },
             ].map((item, index) => (
               <a
                 key={index}
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 rounded-full border border-white/50 hover:bg-white/20 transition-all duration-300"
+                className="p-2 sm:p-3 rounded-full border border-white/50 hover:bg-white/20 transition-all duration-300"
               >
                 {item.icon}
               </a>
             ))}
           </div>
         </div>
+
       </div>
     </section>
   );

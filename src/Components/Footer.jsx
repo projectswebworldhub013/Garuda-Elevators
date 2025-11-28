@@ -25,7 +25,6 @@ import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import bgImg from "../assets/images/footerbg2.jpg";
 import VisitorCounter from "./VisitorCounter";
 import Translator from "./Translator";
 
@@ -60,36 +59,29 @@ export default function Footer() {
       variants={containerVariants}
       initial="hidden"
       animate={controls}
-      className="relative text-[#666666] pt-20 pb-10 px-6 md:px-16 overflow-hidden font-sans font-semibold"
-      style={{
-        backgroundImage: `url(${bgImg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
+      className="relative bg-black text-white pt-20 pb-10 px-6 md:px-16 overflow-hidden font-sans font-semibold"
     >
-      {/* White Overlay */}
-      <div className="absolute inset-0 bg-[#F7F7F5]/85 z-0"></div>
-
       {/* Grid Content */}
       <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 text-sm">
+
         {/* About */}
         <div className="flex flex-col space-y-3">
-          <h4 className="font-bold mb-2 text-3xl text-[#B22222] font-[italiana]">
+          <h4 className="font-bold mb-2 text-3xl text-[#eb0000] font-[italiana]">
             About Garuda Elevators
           </h4>
-          <p className="leading-relaxed text-[#666666]">
+          <p className="leading-relaxed text-gray-300">
             Garuda Elevators is a leading provider of vertical transportation
             solutions in India, committed to delivering{" "}
-            <span className="text-[#FF0000] font-semibold">
+            <span className="text-red-400 font-semibold">
               innovative, safe, and high-performance elevators
-            </span>
-            . With years of industry expertise, we specialize in customized lift
+            </span>.
+            With years of expertise, we specialize in customized lift
             installations, modernization, and maintenance services designed to
             meet the highest standards of{" "}
-            <span className="text-[#B22222] font-semibold">quality and safety</span>.
+            <span className="text-red-500 font-semibold">quality and safety</span>.
           </p>
-          <div className="mt-4 space-y-1 text-[#0D0D0D] text-xs">
+
+          <div className="mt-4 space-y-1 text-gray-400 text-xs">
             <p>GSTIN/UIN: 29BHTPS0454D1ZZ</p>
             <p>ISO Certified Company</p>
           </div>
@@ -97,10 +89,10 @@ export default function Footer() {
 
         {/* Quick Links */}
         <div>
-          <h4 className="font-bold text-2xl mb-4 text-[#B22222] font-[italiana]">
+          <h4 className="font-bold text-2xl mb-4 text-[#eb0000] font-[italiana]">
             Quick Links
           </h4>
-          <ul className="space-y-2 text-[#0D0D0D]">
+          <ul className="space-y-2 text-gray-300">
             {[
               ["Home", "/", <FaHome />],
               ["About Us", "/about", <FaInfoCircle />],
@@ -111,7 +103,7 @@ export default function Footer() {
               <li key={i}>
                 <Link
                   to={link}
-                  className="flex items-center gap-2 hover:text-[#A01818] transition duration-300"
+                  className="flex items-center gap-2 hover:text-red-400 transition duration-300"
                 >
                   {icon} {text}
                 </Link>
@@ -119,17 +111,17 @@ export default function Footer() {
             ))}
           </ul>
 
-          <h4 className="mt-6 font-bold text-2xl text-[#B22222] font-[italiana]">
+          <h4 className="mt-6 font-bold text-2xl text-[#eb0000] font-[italiana]">
             Email
           </h4>
-          <ul className="mt-2 space-y-2 text-[#0D0D0D]">
+          <ul className="mt-2 space-y-2 text-gray-300">
             {["info@garudaelevators.in"].map((email, i) => (
               <li key={i}>
                 <a
                   href={`mailto:${email}`}
-                  className="flex items-center space-x-2 hover:text-[#A01818] transition duration-300"
+                  className="flex items-center space-x-2 hover:text-red-400 transition duration-300"
                 >
-                  <FaEnvelope className="text-[#FF0000]" />
+                  <FaEnvelope className="text-red-500" />
                   <span>{email}</span>
                 </a>
               </li>
@@ -139,17 +131,17 @@ export default function Footer() {
 
         {/* Services */}
         <div>
-          <h4 className="font-bold text-2xl mb-4 text-[#B22222] font-[italiana]">
+          <h4 className="font-bold text-2xl mb-4 text-[#eb0000] font-[italiana]">
             Our Services
           </h4>
-          <ul className="space-y-2 text-[#0D0D0D]">
+          <ul className="space-y-2 text-gray-300">
             {servicesData.map(({ name, path, icon: Icon }, i) => (
               <li key={i}>
                 <Link
                   to={path}
-                  className="hover:text-[#A01818] transition duration-300 flex items-center gap-2"
+                  className="hover:text-red-400 transition duration-300 flex items-center gap-2"
                 >
-                  <Icon className="text-[#FF0000]" /> {name}
+                  <Icon className="text-red-500" /> {name}
                 </Link>
               </li>
             ))}
@@ -158,11 +150,12 @@ export default function Footer() {
 
         {/* Contact */}
         <div>
-          <h4 className="font-bold text-2xl mb-4 text-[#B22222] font-[italiana]">
+          <h4 className="font-bold text-2xl mb-4 text-[#eb0000] font-[italiana]">
             Contact Info
           </h4>
-          <address className="not-italic leading-relaxed mb-4 text-[#0D0D0D]">
-            <strong>Corporate Office:</strong>
+
+          <address className="not-italic leading-relaxed mb-4 text-gray-300">
+            <strong className="text-white">Corporate Office:</strong>
             <br />
             Plot No.520, Ground Floor, 2nd Main, A Block, 2nd Stage,
             <br />
@@ -186,7 +179,7 @@ export default function Footer() {
                   href="#"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#FF0000] hover:text-[#A01818] transition"
+                  className="text-red-500 hover:text-red-400 transition"
                 >
                   <Icon size={20} />
                 </a>
@@ -197,7 +190,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom */}
-      <div className="mt-4 text-center text-xs text-[#666666] border-t border-[#E6E6E6] pt-2 space-y-2 relative z-10">
+      <div className="mt-4 text-center text-xs text-gray-400 border-t border-gray-700 pt-2 space-y-2 relative z-10">
         <VisitorCounter />
         <p>© {new Date().getFullYear()} Garuda Elevators. All rights reserved.</p>
         <p>
@@ -206,7 +199,7 @@ export default function Footer() {
             href="https://webworldhub.co.in"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-semibold text-[#0D0D0D] hover:text-[#A01818] transition"
+            className="font-semibold text-white hover:text-red-400 transition"
           >
             Web World Hub
           </a>

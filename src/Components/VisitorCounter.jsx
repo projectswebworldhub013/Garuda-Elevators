@@ -12,7 +12,7 @@ export default function VisitorCounter() {
   }, []);
 
   return (
-    <div className="text-black text-sm md:text-base font-medium text-center mx-2">
+    <div className="text-white text-sm md:text-base font-medium text-center mx-2">
       Visitor Count:{" "}
       <span className="text-red-800 font-semibold">{count.toLocaleString()}</span>
     </div>

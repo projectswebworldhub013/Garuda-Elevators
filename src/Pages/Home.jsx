@@ -7,6 +7,7 @@ import WhyChooseUs from '../Components/WhyChooseUs'
 import Testimonials from '../Components/Testimonials'
 import GarudaStats from '../Components/GarudaStats'
 import PartnersMarquee from '../Components/PartnersMaequee'
+import CapsuleGallery from '../Components/CapsuleGallery'
 
 const Home = () => {
   return (
@@ -16,7 +17,8 @@ const Home = () => {
       <WhyChooseUs/>
       <PartnersMarquee/>
       <HowWeWork/>
-      <FeaturedProjects/>
+      {/* <FeaturedProjects/> */}
+      <CapsuleGallery/>
       <GarudaStats/>
       <Testimonials/>
     </div>
