@@ -84,7 +84,7 @@ const CapsuleGallery = () => {
                        transition-all duration-500 ease-out hover:-translate-y-2"
           >
             {/* IMAGE AREA - NOW FULL WIDTH + MORE HEIGHT */}
-            <div className="relative w-full h-96 md:h-[420px] bg-black flex items-center justify-center overflow-hidden ">
+            <div className="relative w-full h-96 md:h-[420px] bg-[#F7F7F5] flex items-center justify-center overflow-hidden ">
 
               {card.images.map((img, i) => (
                 <img
@@ -98,7 +98,7 @@ const CapsuleGallery = () => {
               ))}
 
               {/* Hover Black Overlay */}
-              <div className="absolute inset-0 bg-black/10 group-hover:bg-black/50 transition-all duration-500"></div>
+              <div className="absolute inset-0  group-hover:bg-black/50 transition-all duration-500"></div>
 
               {/* Hover Text */}
               <div

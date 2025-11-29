@@ -2,9 +2,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import aboutImgWide from "../assets/images/hero/h4.jpg";
-import aboutImgSmall1 from "../assets/images/hero/h1.jpeg";
-import aboutImgSmall2 from "../assets/images/hero/h3.jpg";
+import aboutImgWide from "../assets/images/new-lift.jpg";
+import aboutImgSmall1 from "../assets/images/a1.jpg";
+import aboutImgSmall2 from "../assets/images/a4.jpg";
 import { FaBuilding, FaSmileBeam } from "react-icons/fa";
 import { IoRocketSharp } from "react-icons/io5";
 

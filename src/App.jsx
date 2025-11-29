@@ -13,6 +13,7 @@ import DesignerCabins from "./Components/DesignerCabins"
 import Doors from "./Components/Doors"
 import ElegantFlooring from "./Components/ElegantFlooring"
 import LiftOperatingPanels from "./Components/LiftOperatingPanels"
+import DesignerFalseCeiling from "./Components/DesignerFalseCeiling"
 
 const ServicePageWrapper = () => {
   const { servicePath } = useParams();
@@ -46,6 +47,7 @@ function App() {
       <Route path="/doors" element={<Doors/>}/>
       <Route path="/floor" element={<ElegantFlooring/>}/>
       <Route path="/panels" element={<LiftOperatingPanels/>}/>
+      <Route path="/false-ceiling" element={<DesignerFalseCeiling/>}/>
      </Routes>
     <Footer/>
     <FloatingButtons/>

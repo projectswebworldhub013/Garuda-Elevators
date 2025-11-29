@@ -12,7 +12,7 @@ const colors = {
 };
 
 const HeroSection = () => {
-  const slides = [img1, img2, img3];
+  const slides = ['abc', 'abc', 'abc'];
   const [current, setCurrent] = useState(0);
 
   // Preload images

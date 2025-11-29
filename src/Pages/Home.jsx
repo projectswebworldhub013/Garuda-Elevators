@@ -1,7 +1,7 @@
 import React from 'react'
 import HeroSection from '../Components/HeroSection'
 import ElevatorsShowcase from '../Components/ElevatorsShowcase'
-import FeaturedProjects from '../Components/FeatruredProjects'
+// import FeaturedProjects from '../Components/FeatruredProjects'
 import HowWeWork from '../Components/HowWeWork'
 import WhyChooseUs from '../Components/WhyChooseUs'
 import Testimonials from '../Components/Testimonials'

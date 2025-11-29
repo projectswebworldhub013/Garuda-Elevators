@@ -5,64 +5,66 @@ import { FiArrowRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
 // === Import Ceiling Images ===
-import fc1 from "../assets/images/false-ceiling/fc1.jpg";
-import fc2 from "../assets/images/false-ceiling/fc2.jpg";
-import fc3 from "../assets/images/false-ceiling/fc3.jpg";
-import fc4 from "../assets/images/false-ceiling/fc4.jpg";
-import fc5 from "../assets/images/false-ceiling/fc5.jpg";
-import fc6 from "../assets/images/false-ceiling/fc6.jpg";
+import fc1 from "../assets/images/ceiling/c1.jpg";
+import fc2 from "../assets/images/ceiling/c2.png";
+import fc3 from "../assets/images/ceiling/c3.png";
+import fc4 from "../assets/images/ceiling/c4.png";
+import fc5 from "../assets/images/ceiling/c5.png";
+import fc6 from "../assets/images/ceiling/c6.png";
 
 // === False Ceiling Data ===
 const ceilings = [
   {
     id: 1,
-    name: "Luxora Linear Ceiling",
+    name: "Linear Panel Ceiling",
     image: fc1,
     description:
-      "A modern linear false ceiling crafted with elegant metallic accents and warm lighting. Perfect for residential and commercial elevator interiors, adding style and depth with contemporary detailing.",
-    tags: ["Modern", "Elegant", "Premium"],
+      "A clean linear-panel ceiling featuring subtle metallic accents and gently diffused lighting. Its straight-line pattern offers a neat, balanced look that complements both commercial and residential elevator cabins without overpowering the interior, ensuring a modern appearance with long-lasting visual consistency.",
+    tags: ["Linear", "Warm", "Simple"],
   },
   {
     id: 2,
-    name: "Crystal Glow Ceiling",
+    name: "Classic Frosted Glass Ceiling",
     image: fc2,
     description:
-      "Frosted crystal-inspired lighting with soft illumination that enhances the lift interior. A perfect combination of clarity, elegance, and balanced brightness.",
-    tags: ["Crystal", "Bright", "Sleek"],
+      "A frosted glass ceiling designed to provide soft, uniform illumination across the cabin. Its clean, understated appearance enhances visibility while creating a pleasant and calm ambiance, ideal for elevators used throughout the day and suitable for maintaining a bright, soothing travel experience.",
+    tags: ["Glass", "Soft Light", "Clean"],
   },
   {
     id: 3,
-    name: "Golden Aura Ceiling",
+    name: "Standard Golden Panel Ceiling",
     image: fc3,
     description:
-      "A designer golden-themed false ceiling with backlit patterns that reflect luxury and sophistication. Ideal for premium elevators with royal ambiance.",
-    tags: ["Golden", "Royal", "Luxurious"],
+      "A traditional golden-finish ceiling paired with mellow, warm lighting. The subtle shine of the panels adds a gentle touch of richness while maintaining a practical and familiar look commonly preferred in commercial lift interiors, offering timeless elegance with dependable everyday usability.",
+    tags: ["Golden", "Warm", "Standard"],
   },
   {
     id: 4,
-    name: "Wooden Harmony Ceiling",
+    name: "Basic Wooden Panel Ceiling",
     image: fc4,
     description:
-      "Natural wood-inspired design blended with warm lighting effects. Gives a cozy and inviting feel while maintaining a modern architectural elegance.",
-    tags: ["Wooden", "Warm", "Elegant"],
+      "A simple wooden-textured ceiling that blends natural tones with soft illumination. Its warm and steady appearance creates a welcoming feel, making it well-suited for elevators in offices, apartments, and small commercial spaces, adding comforting aesthetics with a touch of earthy sophistication.",
+    tags: ["Wood", "Warm", "Simple"],
   },
   {
     id: 5,
-    name: "Opulent Diamond Ceiling",
+    name: "Soft White Panel Ceiling",
     image: fc5,
     description:
-      "Geometric diamond pattern with soft golden illumination that creates a unique visual impact. A perfect choice for designer and high-end elevators.",
-    tags: ["Designer", "Opulent", "Premium"],
+      "A plain white ceiling with evenly distributed lighting that brightens the entire lift cabin. Its neutral design offers excellent visibility and a clean, clutter-free aesthetic suitable for any type of elevator environment, promoting clarity, simplicity, and a universally appealing modern atmosphere.",
+    tags: ["White", "Bright", "Plain"],
   },
   {
     id: 6,
-    name: "Metallic Star Ceiling",
+    name: "Standard Metallic Ceiling",
     image: fc6,
     description:
-      "Metallic false ceiling with star-dot light effects providing a futuristic and brilliant atmosphere for modern elevators.",
-    tags: ["Metallic", "Futuristic", "Bright"],
-  },
+      "A basic metallic ceiling equipped with simple light panels that deliver reliable illumination. Durable, practical, and easy to maintain, it is a popular choice for elevators requiring a straightforward and long-lasting design, ensuring dependable performance even in high-usage commercial installations.",
+    tags: ["Metal", "Simple", "Neutral"],
+  }
 ];
+
+
 
 export default function DesignerFalseCeiling() {
   const [selectedItem, setSelectedItem] = useState(null);
