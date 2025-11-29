@@ -45,9 +45,9 @@ const servicesData = [
 // ✅ Lift Interiors Data
 const interiorsData = [
   {
-    name: "Premium Cabins",
-    path: "/cabins",
-    icon: FaRegObjectGroup,
+    name: "Lift Operating Panels",
+    path: "/panels",
+    icon: MdOutlineTouchApp,
   },
   {
     name: "Modern Lift Doors",
@@ -55,20 +55,21 @@ const interiorsData = [
     icon: FaDoorClosed,
   },
   {
-    name: "Lift Operating Panels",
-    path: "/panels",
-    icon: MdOutlineTouchApp,
-  },
-  {
-    name: "Designer False Ceiling",
-    path: "/false-ceiling",
-    icon: PiCloudLight,
+    name: "Premium Cabins",
+    path: "/cabins",
+    icon: FaRegObjectGroup,
   },
   {
     name: "Elegant Flooring",
     path: "/floor",
     icon: FaHouseFloodWater,
   },
+  {
+    name: "Designer False Ceiling",
+    path: "/false-ceiling",
+    icon: PiCloudLight,
+  },
+  
 ];
 // ✅ Nav Items
 const leftNavItems = [

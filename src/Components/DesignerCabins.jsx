@@ -11,7 +11,7 @@ import cabin6 from "../assets/images/cabins/c6.jpg";
 import cabin8 from "../assets/images/cabins/c8.jpg";
 import cabin10 from "../assets/images/cabins/c10.jpg";
 
-// Cabin Data with expanded descriptions
+// Cabin Data with expanded descriptions (unchanged as requested)
 const cabins = [
   {
     id: 1,
@@ -68,15 +68,13 @@ export default function DesignerCabins() {
 
   return (
     <div className="bg-[#F7F7F5] text-[#0D0D0D] min-h-screen">
-
       {/* ===================== HEADER ===================== */}
       <header className="relative py-20 bg-gradient-to-br from-red-800 to-red-900 text-white text-center">
         <div className="max-w-5xl mx-auto px-6 flex flex-col items-center">
-
           <div className="flex items-center justify-center mb-6 gap-3">
-            <div className="h-[2px] w-20 bg-white/50 rounded-full"></div>
+            <div className="h-[2px] w-20 bg-white/50 rounded-full" />
             <FaRegStar className="text-2xl" />
-            <div className="h-[2px] w-20 bg-white/50 rounded-full"></div>
+            <div className="h-[2px] w-20 bg-white/50 rounded-full" />
           </div>
 
           <h1 className="text-3xl md:text-5xl font-semibold tracking-tight uppercase">
@@ -87,13 +85,12 @@ export default function DesignerCabins() {
             Experience luxury, elegance, and innovation in every lift cabin we create.
           </p>
 
-          <div className="mt-8 h-1 w-24 bg-white rounded-full"></div>
+          <div className="mt-8 h-1 w-24 bg-white rounded-full" />
         </div>
       </header>
 
       {/* ===================== CONTENT SECTION ===================== */}
       <section className="max-w-7xl mx-auto px-6 pt-12 pb-20">
-
         <div className="relative flex flex-col items-center mb-14">
           <h2 className="text-2xl md:text-4xl font-semibold tracking-wide text-center">
             Explore Our Exclusive Collection
@@ -103,126 +100,177 @@ export default function DesignerCabins() {
             Crafted with precision — blending luxury, safety, and modern engineering.
           </p>
 
-          <div className="mt-4 h-1 w-20 bg-red-800 rounded-full"></div>
+          <div className="mt-4 h-1 w-20 bg-red-800 rounded-full" />
         </div>
 
         {/* ===================== CABIN GRID ===================== */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {cabins.map((cabin) => (
-            <motion.div
+            <motion.article
               key={cabin.id}
-              whileHover={{ rotateX: 6, rotateY: -6, scale: 1.03, transition: { duration: 0.3 } }}
+              whileHover={{
+                scale: 1.04,
+                rotateX: 6,
+                rotateY: -6,
+                transition: { duration: 0.3 },
+              }}
               onClick={() => setSelectedCabin(cabin)}
-              className="bg-white rounded-xl shadow-md hover:shadow-2xl cursor-pointer overflow-hidden"
+              className="relative rounded-2xl overflow-hidden shadow-xl cursor-pointer
+                         bg-white/40 backdrop-blur-lg border border-white/60 hover:border-white/70
+                         transition-all duration-300"
             >
-              <div className="relative h-[350px]">
-                <img src={cabin.image} alt={cabin.name} className="w-full h-full object-cover" />
-              </div>
-              <div className="p-3 flex justify-between items-center">
-                <div>
-                  <h3 className="font-semibold text-gray-800 text-sm md:text-base mb-1">{cabin.name}</h3>
+              {/* image area */}
+              <div className="relative h-[420px] md:h-[380px] lg:h-[420px] w-full overflow-hidden">
+                <img
+                  src={cabin.image}
+                  alt={cabin.name}
+                  className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                />
+
+                {/* floating badge */}
+                <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-black/40 backdrop-blur-md text-white text-xs px-3 py-1 rounded-full">
+                  <FaStar className="text-yellow-300" />
+                  <span className="font-medium">Featured</span>
                 </div>
-                <div className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition">
-                  <FiArrowRight size={16} />
+
+                {/* subtle gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-90" />
+              </div>
+
+              {/* content area */}
+              <div className="p-5 bg-gradient-to-b from-white/80 to-white/40">
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-900 mb-1 line-clamp-1">
+                      {cabin.name}
+                    </h3>
+
+                    <p className="text-gray-600 text-sm md:text-sm line-clamp-2">
+                      {cabin.description}
+                    </p>
+                  </div>
+
+                  {/* arrow CTA */}
+                  <div className="ml-3 flex-shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-red-50 border border-red-100 flex items-center justify-center
+                                    shadow-sm hover:bg-red-800 hover:text-white transition-colors duration-300">
+                      <FiArrowRight className="text-black" />
+                    </div>
+                  </div>
+                </div>
+
+                {/* tags row */}
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {cabin.tags.map((tag, i) => (
+                    <span
+                      key={i}
+                      className="inline-flex items-center gap-2 bg-gray-100 text-xs px-3 py-1 rounded-full font-medium"
+                    >
+                      {tag === "Modern" && <FaStar size={12} />}
+                      {tag === "Luxury" && <FaGem size={12} />}
+                      {tag === "Elegant" && <FaCouch size={12} />}
+                      {tag === "Transparent" && <FaRegStar size={12} />}
+                      {tag === "Royal" && <FaGem size={12} />}
+                      {tag === "Opulent" && <FaGem size={12} />}
+                      {tag === "Premium" && <FaStar size={12} />}
+                      {tag === "Wooden" && <FaCouch size={12} />}
+                      {tag === "Warm" && <FaCouch size={12} />}
+                      {tag === "Designer" && <FaGem size={12} />}
+                      {tag === "Golden" && <FaGem size={12} />}
+                      {tag === "Professional" && <FaStar size={12} />}
+                      {tag === "Classy" && <FaStar size={12} />}
+                      <span className="whitespace-nowrap">{tag}</span>
+                    </span>
+                  ))}
                 </div>
               </div>
-            </motion.div>
+            </motion.article>
           ))}
         </div>
       </section>
 
       {/* ===================== MODAL ===================== */}
-<AnimatePresence>
-  {selectedCabin && (
-    <>
-      {/* Overlay */}
-      <motion.div
-        className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={() => setSelectedCabin(null)}
-      />
+      <AnimatePresence>
+        {selectedCabin && (
+          <>
+            {/* overlay */}
+            <motion.div
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedCabin(null)}
+            />
 
-      {/* Modal Content */}
-      <motion.div
-        className="fixed z-50 top-1/2 left-1/2 w-[95%] max-w-4xl -translate-x-1/2 -translate-y-1/2 
-          bg-white rounded-xl shadow-xl overflow-hidden flex flex-col md:flex-row 
-          max-h-[90vh] md:max-h-[70vh]"
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.9 }}
-        transition={{ duration: 0.3 }}
-      >
-        {/* Image Side */}
-        <div className="md:w-1/2 w-full h-64 md:h-auto flex items-center justify-center bg-gray-100 overflow-hidden">
-          <img
-            src={selectedCabin.image}
-            alt={selectedCabin.name}
-            className="w-full h-full object-cover"
-          />
-        </div>
+            {/* modal */}
+            <motion.div
+              className="fixed z-50 top-1/2 left-1/2 w-[95%] max-w-4xl -translate-x-1/2 -translate-y-1/2
+                         bg-white rounded-xl shadow-2xl overflow-hidden flex flex-col md:flex-row
+                         max-h-[90vh] md:max-h-[75vh]"
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.28 }}
+            >
+              {/* image side */}
+              <div className="md:w-1/2 w-full h-64 md:h-auto bg-gray-100 flex items-center justify-center overflow-hidden">
+                <img
+                  src={selectedCabin.image}
+                  alt={selectedCabin.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-        {/* Content Side */}
-        <div
-          className="md:w-1/2 w-full p-4 md:p-6 flex flex-col 
-            justify-start md:justify-center space-y-4 
-            text-center md:text-left overflow-y-auto max-h-[70vh]"
-        >
-          <h3 className="text-2xl md:text-3xl font-semibold text-gray-800">
-            {selectedCabin.name}
-          </h3>
+              {/* content side (centered vertically) */}
+              <div className="md:w-1/2 w-full p-6 md:p-8 flex flex-col justify-center text-center md:text-left overflow-y-auto">
+                <h3 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-2">
+                  {selectedCabin.name}
+                </h3>
 
-          <p className="text-gray-600 text-sm md:text-base leading-relaxed">
-            {selectedCabin.description}
-          </p>
+                <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+                  {selectedCabin.description}
+                </p>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mt-2 justify-center md:justify-start">
-            {selectedCabin.tags.map((tag, index) => (
-              <span
-                key={index}
-                className="flex items-center gap-1 bg-gray-100 text-xs px-2 py-1 rounded-full font-medium"
+                <div className="flex flex-wrap gap-2 mt-4 justify-center md:justify-start">
+                  {selectedCabin.tags.map((tag, idx) => (
+                    <span
+                      key={idx}
+                      className="flex items-center gap-2 bg-gray-100 text-xs px-3 py-1 rounded-full font-medium"
+                    >
+                      {(tag === "Modern" || tag === "Premium" || tag === "Professional") && (
+                        <FaStar size={12} />
+                      )}
+                      {(tag === "Luxury" || tag === "Opulent" || tag === "Golden") && (
+                        <FaGem size={12} />
+                      )}
+                      {(tag === "Elegant" || tag === "Wooden" || tag === "Warm") && (
+                        <FaCouch size={12} />
+                      )}
+                      <span>{tag}</span>
+                    </span>
+                  ))}
+                </div>
+
+                <Link
+                  to="/contact"
+                  className="inline-block mt-6 bg-red-800 hover:bg-red-900 text-white font-medium text-sm px-6 py-2 rounded-full transition self-center md:self-start"
+                >
+                  Get Enquiry
+                </Link>
+              </div>
+
+              {/* close */}
+              <button
+                onClick={() => setSelectedCabin(null)}
+                className="cursor-pointer absolute top-3 right-3 bg-white p-1 rounded-full shadow hover:bg-gray-100"
+                aria-label="Close"
               >
-                {tag === "Modern" && <FaStar size={12} />}
-                {tag === "Luxury" && <FaGem size={12} />}
-                {tag === "Elegant" && <FaCouch size={12} />}
-                {tag === "Transparent" && <FaRegStar size={12} />}
-                {tag === "Royal" && <FaGem size={12} />}
-                {tag === "Opulent" && <FaGem size={12} />}
-                {tag === "Premium" && <FaStar size={12} />}
-                {tag === "Wooden" && <FaCouch size={12} />}
-                {tag === "Warm" && <FaCouch size={12} />}
-                {tag === "Designer" && <FaGem size={12} />}
-                {tag === "Golden" && <FaGem size={12} />}
-                {tag === "Professional" && <FaStar size={12} />}
-                {tag === "Classy" && <FaStar size={12} />}
-                {tag}
-              </span>
-            ))}
-          </div>
-
-          {/* Enquiry Button */}
-          <Link
-            to="/contact"
-            className="inline-block mt-4 bg-red-800 hover:bg-red-900 text-white font-medium text-sm px-6 py-2 rounded-full transition self-center md:self-start"
-          >
-            Get Enquiry
-          </Link>
-        </div>
-
-        {/* Close Button */}
-        <button
-          onClick={() => setSelectedCabin(null)}
-          className="cursor-pointer absolute top-3 right-3 bg-white p-1 rounded-full shadow hover:bg-gray-100"
-        >
-          <FaTimes size={18} />
-        </button>
-      </motion.div>
-    </>
-  )}
-</AnimatePresence>
-
+                <FaTimes size={18} />
+              </button>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

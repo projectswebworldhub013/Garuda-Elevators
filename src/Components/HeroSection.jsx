@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import img1 from "../assets/images/hero/h1.jpeg";
 import img2 from "../assets/images/hero/h4.jpg";
 import img3 from "../assets/images/hero/h3.jpg";
+import brochurePDF from "../assets/images/cat.pdf"; // <-- IMPORT PDF
 
 const colors = {
   maroonRed: "#800000",
@@ -12,7 +13,7 @@ const colors = {
 };
 
 const HeroSection = () => {
-  const slides = ['abc', 'abc', 'abc'];
+  const slides = [img1, img2, img3];
   const [current, setCurrent] = useState(0);
 
   // Preload images
@@ -31,9 +32,14 @@ const HeroSection = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // PDF Handler
+  const openBrochure = () => {
+    window.open(brochurePDF, "_blank");
+  };
+
   return (
     <section
-      className="relative w-full h-[88vh] md:h-[90vh] overflow-hidden text-white flex items-center select-none"
+      className="relative w-full h-[85vh] md:h-[90vh] overflow-hidden text-white flex items-center select-none"
       style={{
         backgroundImage: `url(${slides[current]})`,
         backgroundSize: "cover",
@@ -48,7 +54,7 @@ const HeroSection = () => {
       <div className="relative z-10 w-full h-full flex flex-col md:flex-row justify-between items-center px-6 md:px-16 lg:px-24">
 
         {/* LEFT CONTENT */}
-        <div className="max-w-2xl">
+        <div className="max-w-2xl m-auto">
           <h1 className="text-2xl sm:text-3xl md:text-5xl font-bold leading-tight mb-4 md:mb-6">
             Elevating Excellence Since{" "}
             <span className="text-[#FFD7D7]">2010</span>
@@ -64,17 +70,18 @@ const HeroSection = () => {
 
           {/* BUTTONS */}
           <div className="flex gap-4">
-            <Link to="/services">
-              <button
-                className="px-5 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-base font-semibold 
-                transition-transform duration-300 hover:scale-105 shadow-lg"
-                style={{
-                  background: `linear-gradient(90deg, ${colors.maroonRed}, ${colors.deepCrimson})`,
-                }}
-              >
-                Explore Services
-              </button>
-            </Link>
+
+            {/* NEW BROCHURE BUTTON */}
+            <button
+              onClick={openBrochure}
+              className="px-5 py-2 sm:px-6 sm:py-3 rounded-full text-sm sm:text-base font-semibold 
+              transition-transform duration-300 hover:scale-105 shadow-lg"
+              style={{
+                background: `linear-gradient(90deg, ${colors.maroonRed}, ${colors.deepCrimson})`,
+              }}
+            >
+              Get Brochure
+            </button>
 
             <button
               onClick={() => (window.location.href = "/about")}
@@ -96,7 +103,7 @@ const HeroSection = () => {
           </p>
 
           {/* SOCIAL ICONS */}
-          <div className="flex flex-col gap-3">
+          <div className="hidden md:flex flex-col gap-3">
             {[
               { icon: <FaFacebookF size={16} />, href: "https://facebook.com" },
               { icon: <FaInstagram size={16} />, href: "https://instagram.com" },

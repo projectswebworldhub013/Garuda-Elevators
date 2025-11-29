@@ -19,7 +19,7 @@ const ceilings = [
     name: "Linear Panel Ceiling",
     image: fc1,
     description:
-      "A clean linear-panel ceiling featuring subtle metallic accents and gently diffused lighting. Its straight-line pattern offers a neat, balanced look that complements both commercial and residential elevator cabins without overpowering the interior, ensuring a modern appearance with long-lasting visual consistency.",
+      "A clean linear-panel ceiling with subtle metallic accents and gently diffused lighting. Straight-line pattern offers a neat, balanced look for commercial and residential elevator cabins.",
     tags: ["Linear", "Warm", "Simple"],
   },
   {
@@ -27,7 +27,7 @@ const ceilings = [
     name: "Classic Frosted Glass Ceiling",
     image: fc2,
     description:
-      "A frosted glass ceiling designed to provide soft, uniform illumination across the cabin. Its clean, understated appearance enhances visibility while creating a pleasant and calm ambiance, ideal for elevators used throughout the day and suitable for maintaining a bright, soothing travel experience.",
+      "Frosted glass ceiling providing soft, uniform illumination. Enhances visibility and creates a calm ambiance for all-day elevator use.",
     tags: ["Glass", "Soft Light", "Clean"],
   },
   {
@@ -35,7 +35,7 @@ const ceilings = [
     name: "Standard Golden Panel Ceiling",
     image: fc3,
     description:
-      "A traditional golden-finish ceiling paired with mellow, warm lighting. The subtle shine of the panels adds a gentle touch of richness while maintaining a practical and familiar look commonly preferred in commercial lift interiors, offering timeless elegance with dependable everyday usability.",
+      "Traditional golden-finish ceiling with warm lighting. Adds subtle richness while maintaining a practical and familiar look.",
     tags: ["Golden", "Warm", "Standard"],
   },
   {
@@ -43,7 +43,7 @@ const ceilings = [
     name: "Basic Wooden Panel Ceiling",
     image: fc4,
     description:
-      "A simple wooden-textured ceiling that blends natural tones with soft illumination. Its warm and steady appearance creates a welcoming feel, making it well-suited for elevators in offices, apartments, and small commercial spaces, adding comforting aesthetics with a touch of earthy sophistication.",
+      "Wood-textured ceiling blending natural tones with soft illumination. Creates a welcoming feel for offices, apartments, and small commercial spaces.",
     tags: ["Wood", "Warm", "Simple"],
   },
   {
@@ -51,7 +51,7 @@ const ceilings = [
     name: "Soft White Panel Ceiling",
     image: fc5,
     description:
-      "A plain white ceiling with evenly distributed lighting that brightens the entire lift cabin. Its neutral design offers excellent visibility and a clean, clutter-free aesthetic suitable for any type of elevator environment, promoting clarity, simplicity, and a universally appealing modern atmosphere.",
+      "Plain white ceiling with evenly distributed lighting. Neutral design offers excellent visibility and clean, clutter-free aesthetics for any elevator.",
     tags: ["White", "Bright", "Plain"],
   },
   {
@@ -59,12 +59,10 @@ const ceilings = [
     name: "Standard Metallic Ceiling",
     image: fc6,
     description:
-      "A basic metallic ceiling equipped with simple light panels that deliver reliable illumination. Durable, practical, and easy to maintain, it is a popular choice for elevators requiring a straightforward and long-lasting design, ensuring dependable performance even in high-usage commercial installations.",
+      "Basic metallic ceiling with simple light panels. Durable, practical, easy to maintain, ideal for high-usage commercial elevators.",
     tags: ["Metal", "Simple", "Neutral"],
-  }
+  },
 ];
-
-
 
 export default function DesignerFalseCeiling() {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -112,28 +110,49 @@ export default function DesignerFalseCeiling() {
             <motion.div
               key={item.id}
               whileHover={{
+                scale: 1.04,
                 rotateX: 6,
                 rotateY: -6,
-                scale: 1.03,
                 transition: { duration: 0.3 },
               }}
               onClick={() => setSelectedItem(item)}
-              className="bg-white rounded-xl shadow-md hover:shadow-2xl cursor-pointer overflow-hidden"
+              className="relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl cursor-pointer 
+                bg-white/40 backdrop-blur-xl border border-white/60"
             >
-              <div className="relative h-[350px]">
+              {/* Image Section */}
+              <div className="relative h-[350px] overflow-hidden group">
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+
+                {/* Floating Tags */}
+                <div className="absolute top-3 left-3 flex flex-wrap gap-2">
+                  {item.tags.slice(0, 2).map((tag, i) => (
+                    <span
+                      key={i}
+                      className="text-xs px-3 py-1 rounded-full text-white bg-black/40 backdrop-blur-md"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Shine Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
               </div>
 
-              <div className="p-3 flex justify-between items-center">
-                <h3 className="font-semibold text-gray-800 text-sm md:text-base mb-1">
-                  {item.name}
-                </h3>
-                <div className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition">
-                  <FiArrowRight size={16} />
+              {/* Content */}
+              <div className="p-5 bg-gradient-to-b from-white/80 to-white/40 backdrop-blur-xl">
+                <h3 className="font-semibold text-gray-900 text-lg mb-1">{item.name}</h3>
+
+                <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                  {item.description}
+                </p>
+
+                <div className="w-9 h-9 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center transition ml-auto">
+                  <FiArrowRight size={18} className="text-red-700" />
                 </div>
               </div>
             </motion.div>
@@ -156,9 +175,9 @@ export default function DesignerFalseCeiling() {
 
             {/* Modal */}
             <motion.div
-              className="fixed z-50 top-1/2 left-1/2 w-[95%] max-w-4xl 
-              -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl shadow-xl 
-              overflow-hidden flex flex-col md:flex-row max-h-[90vh] md:max-h-[70vh]"
+              className="fixed z-50 top-1/2 left-1/2 w-[95%] max-w-4xl -translate-x-1/2 -translate-y-1/2 
+              bg-white rounded-xl shadow-xl overflow-hidden flex flex-col md:flex-row 
+              max-h-[90vh] md:max-h-[70vh]"
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
@@ -190,21 +209,15 @@ export default function DesignerFalseCeiling() {
                       key={i}
                       className="flex items-center gap-1 bg-gray-100 text-xs px-2 py-1 rounded-full font-medium"
                     >
-                      {tag === "Modern" && <FaStar size={12} />}
-                      {tag === "Elegant" && <FaCloud size={12} />}
-                      {tag === "Premium" && <FaGem size={12} />}
-                      {tag === "Crystal" && <FaRegStar size={12} />}
-                      {tag === "Bright" && <FaStar size={12} />}
-                      {tag === "Sleek" && <FaCloud size={12} />}
-                      {tag === "Golden" && <FaGem size={12} />}
-                      {tag === "Royal" && <FaGem size={12} />}
-                      {tag === "Luxurious" && <FaGem size={12} />}
-                      {tag === "Wooden" && <FaCloud size={12} />}
-                      {tag === "Warm" && <FaCloud size={12} />}
-                      {tag === "Designer" && <FaGem size={12} />}
-                      {tag === "Opulent" && <FaGem size={12} />}
-                      {tag === "Metallic" && <FaStar size={12} />}
-                      {tag === "Futuristic" && <FaStar size={12} />}
+                      {(tag === "Linear" || tag === "Warm" || tag === "Wood") && (
+                        <FaStar size={12} />
+                      )}
+                      {(tag === "Golden" || tag === "Bright" || tag === "Premium") && (
+                        <FaGem size={12} />
+                      )}
+                      {(tag === "Simple" || tag === "Clean" || tag === "Neutral") && (
+                        <FaCloud size={12} />
+                      )}
                       {tag}
                     </span>
                   ))}

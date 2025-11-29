@@ -11,7 +11,6 @@ import f4 from "../assets/images/flooring/f4.png";
 import f5 from "../assets/images/flooring/f5.png";
 import f6 from "../assets/images/flooring/f6.png";
 
-
 // Flooring Data
 const floors = [
   {
@@ -64,7 +63,6 @@ const floors = [
   },
 ];
 
-
 export default function ElegantFlooring() {
   const [selectedFloor, setSelectedFloor] = useState(null);
 
@@ -74,7 +72,6 @@ export default function ElegantFlooring() {
       {/* ===================== HEADER ===================== */}
       <header className="relative py-20 bg-gradient-to-br from-red-800 to-red-900 text-white text-center">
         <div className="max-w-5xl mx-auto px-6 flex flex-col items-center">
-
           <div className="flex items-center justify-center mb-6 gap-3">
             <div className="h-[2px] w-20 bg-white/50 rounded-full"></div>
             <FaRegStar className="text-2xl" />
@@ -93,39 +90,58 @@ export default function ElegantFlooring() {
         </div>
       </header>
 
-      {/* ===================== CONTENT SECTION ===================== */}
+      {/* ===================== CONTENT ===================== */}
       <section className="max-w-7xl mx-auto px-6 pt-12 pb-20">
-
         <div className="relative flex flex-col items-center mb-14">
           <h2 className="text-2xl md:text-4xl font-semibold tracking-wide text-center">
             Explore Premium Flooring Options
           </h2>
-
           <p className="mt-3 text-sm md:text-base text-gray-700 font-medium tracking-wide text-center">
             Designed for durability — built for luxury & long-lasting performance.
           </p>
-
           <div className="mt-4 h-1 w-20 bg-red-800 rounded-full"></div>
         </div>
 
         {/* ===================== FLOOR GRID ===================== */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
           {floors.map((floor) => (
             <motion.div
               key={floor.id}
-              whileHover={{ rotateX: 6, rotateY: -6, scale: 1.03, transition: { duration: 0.3 } }}
+              whileHover={{
+                scale: 1.04,
+                rotateX: 6,
+                rotateY: -6,
+                transition: { duration: 0.3 },
+              }}
               onClick={() => setSelectedFloor(floor)}
-              className="bg-white rounded-xl shadow-md hover:shadow-2xl cursor-pointer overflow-hidden"
+              className="relative rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl cursor-pointer 
+              bg-white/40 backdrop-blur-xl border border-white/60"
             >
-              <div className="relative h-[350px]">
-                <img src={floor.image} alt={floor.name} className="w-full h-full object-cover" />
-              </div>
-              <div className="p-3 flex justify-between items-center">
-                <div>
-                  <h3 className="font-semibold text-gray-800 text-sm md:text-base mb-1">{floor.name}</h3>
+              {/* Image Section */}
+              <div className="relative h-[330px] overflow-hidden group">
+                <img
+                  src={floor.image}
+                  alt={floor.name}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+
+                {/* Floating Name Badge */}
+                <div className="absolute top-3 left-3 bg-zinc-800 text-white text-xs md:text-sm font-semibold px-3 py-1 rounded-full shadow-lg z-10">
+                  {floor.name}
                 </div>
-                <div className="w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center transition">
-                  <FiArrowRight size={16} />
+
+                {/* Shine Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
+              </div>
+
+              {/* Content */}
+              <div className="p-5 bg-gradient-to-b from-white/80 to-white/40 backdrop-blur-xl">
+                <p className="text-gray-600 text-sm mb-3 line-clamp-2">
+                  {floor.description}
+                </p>
+
+                <div className="w-9 h-9 rounded-full bg-red-100 hover:bg-red-200 flex items-center justify-center transition ml-auto">
+                  <FiArrowRight size={18} className="text-red-700" />
                 </div>
               </div>
             </motion.div>
@@ -146,7 +162,7 @@ export default function ElegantFlooring() {
               onClick={() => setSelectedFloor(null)}
             />
 
-            {/* Modal Content */}
+            {/* Modal */}
             <motion.div
               className="fixed z-50 top-1/2 left-1/2 w-[95%] max-w-4xl -translate-x-1/2 -translate-y-1/2 
               bg-white rounded-xl shadow-xl overflow-hidden flex flex-col md:flex-row 
@@ -156,8 +172,8 @@ export default function ElegantFlooring() {
               exit={{ opacity: 0, scale: 0.9 }}
               transition={{ duration: 0.3 }}
             >
-              {/* Image Side */}
-              <div className="md:w-1/2 w-full h-64 md:h-auto flex items-center justify-center bg-gray-100 overflow-hidden">
+              {/* Image */}
+              <div className="md:w-1/2 w-full h-64 md:h-auto bg-gray-100">
                 <img
                   src={selectedFloor.image}
                   alt={selectedFloor.name}
@@ -165,11 +181,8 @@ export default function ElegantFlooring() {
                 />
               </div>
 
-              {/* Content Side */}
-              <div className="md:w-1/2 w-full p-4 md:p-6 flex flex-col 
-                justify-start md:justify-center space-y-4 
-                text-center md:text-left overflow-y-auto max-h-[70vh]"
-              >
+              {/* Content */}
+              <div className="md:w-1/2 w-full p-5 md:p-7 flex flex-col justify-center space-y-4 text-center md:text-left overflow-y-auto">
                 <h3 className="text-2xl md:text-3xl font-semibold text-gray-800">
                   {selectedFloor.name}
                 </h3>
@@ -179,7 +192,7 @@ export default function ElegantFlooring() {
                 </p>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 mt-2 justify-center md:justify-start">
+                <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                   {selectedFloor.tags.map((tag, index) => (
                     <span
                       key={index}
@@ -188,7 +201,6 @@ export default function ElegantFlooring() {
                       {(tag === "Premium" || tag === "Glossy" || tag === "Strong") && <FaStar size={12} />}
                       {(tag === "Luxury" || tag === "Luxurious") && <FaGem size={12} />}
                       {(tag === "Wooden" || tag === "Warm") && <FaCouch size={12} />}
-                      {(tag === "Designer" || tag === "Patterned") && <FaGem size={12} />}
                       {tag}
                     </span>
                   ))}
