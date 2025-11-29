@@ -4,72 +4,66 @@ import { FaRegStar, FaTimes, FaStar, FaGem, FaCouch } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-// Import Flooring Images
-// import f1 from "../assets/images/flooring/f1.jpg";
-// import f2 from "../assets/images/flooring/f2.jpg";
-// import f3 from "../assets/images/flooring/f3.jpg";
-// import f4 from "../assets/images/flooring/f4.jpg";
-// import f5 from "../assets/images/flooring/f5.jpg";
-// import f6 from "../assets/images/flooring/f6.jpg";
+import f1 from "../assets/images/flooring/f1.png";
+import f2 from "../assets/images/flooring/f2.png";
+import f3 from "../assets/images/flooring/f3.png";
+import f4 from "../assets/images/flooring/f4.png";
+import f5 from "../assets/images/flooring/f5.png";
+import f6 from "../assets/images/flooring/f6.png";
 
-import f1 from "../assets/images/doors/d1.jpg";
-import f2 from "../assets/images/doors/d2.jpg";
-import f3 from "../assets/images/doors/d3.jpg";
-import f4 from "../assets/images/doors/d4.jpg";
-import f5 from "../assets/images/doors/d5.jpg";
-import f6 from "../assets/images/doors/d6.jpg";
 
 // Flooring Data
 const floors = [
   {
     id: 1,
-    name: "Marble Elite",
+    name: "Basic Marble Finish",
     image: f1,
     description:
-      "Premium marble flooring designed for luxury elevators, offering rich texture, high durability, and an elegant polished finish. Ideal for premium commercial and high‐end residential lift cabins.",
-    tags: ["Marble", "Premium", "Elegant"],
+      "A simple marble-finish floor with a clean and smooth surface. It offers a practical, easy-to-maintain look commonly seen in household elevators and compact commercial lift cabins.",
+    tags: ["Marble", "Clean", "Simple"],
   },
   {
     id: 2,
-    name: "Granite Prime",
+    name: "Standard Granite Surface",
     image: f2,
     description:
-      "High-strength granite flooring known for its scratch resistance, glossy surface, and long-lasting performance. Perfect for heavy-traffic elevators and commercial buildings.",
-    tags: ["Granite", "Durable", "Glossy"],
+      "A regular granite surface known for its durability and scratch-resistant nature. This flooring is ideal for lifts that experience continuous use throughout the day.",
+    tags: ["Granite", "Durable", "Regular"],
   },
   {
     id: 3,
-    name: "Royal Mosaic",
+    name: "Pebble Texture Floor",
     image: f3,
     description:
-      "A stylish mosaic flooring with intricate patterns, offering a premium designer look ideal for boutique hotels, commercial lifts, and signature buildings.",
-    tags: ["Designer", "Patterned", "Luxury"],
+      "A natural pebble-texture floor offering a grounded and earthy appearance. A great choice for customers who prefer subtle, simple, and nature-inspired lift interiors.",
+    tags: ["Pebble", "Natural", "Simple"],
   },
   {
     id: 4,
-    name: "Wood Tex Comfort",
+    name: "Wood Finish Laminate",
     image: f4,
     description:
-      "A warm wood-texture flooring finish that combines comfort with modern aesthetics. Perfect for customers who prefer natural tones and elegant elevator interiors.",
-    tags: ["Wooden", "Warm", "Modern"],
+      "A basic wood-finish laminate that provides a warm and welcoming feel inside the cabin. This flooring is popular for residential and low-traffic commercial elevators.",
+    tags: ["Wood", "Warm", "Natural"],
   },
   {
     id: 5,
-    name: "Onyx Supreme",
+    name: "Plain White Vinyl Sheet",
     image: f5,
     description:
-      "A luxurious onyx-inspired flooring design with a glowing pattern effect, adding sophistication and richness to premium elevator cabins.",
-    tags: ["Onyx", "Luxurious", "Premium"],
+      "A plain white vinyl floor sheet that keeps the cabin bright and easy to clean. It blends well with any interior and is suitable for simple, budget-friendly elevator setups.",
+    tags: ["Vinyl", "Bright", "Minimal"],
   },
   {
     id: 6,
-    name: "Metal Grid Texture",
+    name: "Basic Rubber Mat Flooring",
     image: f6,
     description:
-      "A metallic grid-style flooring built for durability and industrial strength, ideal for service lifts, high-usage commercial spaces, and modern corporate buildings.",
-    tags: ["Metallic", "Industrial", "Strong"],
+      "A sturdy rubber-mat flooring designed for slip resistance and long-term use. Commonly used in service elevators, goods lifts, and areas requiring high functional reliability.",
+    tags: ["Rubber", "Functional", "Strong"],
   },
 ];
+
 
 export default function ElegantFlooring() {
   const [selectedFloor, setSelectedFloor] = useState(null);
